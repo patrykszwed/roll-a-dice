@@ -1,0 +1,16 @@
+{
+    "tabWidth": 4,
+    "useTabs": false,
+    "semicolons": true,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "printWidth": 120,
+    "editor.formatOnSave": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "proseWrap": "always",
+    "requireConfig": false,
+    "semi": true,
+    "windows": "crlf"
+}
