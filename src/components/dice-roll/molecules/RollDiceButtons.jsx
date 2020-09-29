@@ -1,11 +1,13 @@
 import React from 'react';
 import { RollDiceButtonsContainer } from './styles/styledComponents';
-import { RollDiceButton } from '../atoms/RollDiceButton';
+import { LowerDiceValueButton } from '../atoms/LowerDiceValueButton';
+import { HigherDiceValueButton } from '../atoms/HigherDiceValueButton';
 
 export const RollDiceButtons = () => {
     return (
         <RollDiceButtonsContainer>
-            <RollDiceButton />
+            <LowerDiceValueButton />
+            <HigherDiceValueButton />
         </RollDiceButtonsContainer>
     );
 };

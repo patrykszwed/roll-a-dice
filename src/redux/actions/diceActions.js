@@ -8,3 +8,30 @@ export const diceRolled = ({ dice = {} }) => {
         }
     };
 };
+
+export const diceStartedRolling = () => {
+    return {
+        type: actions.DICE_ROLL.DICE_STARTED_ROLLING
+    };
+};
+
+export const diceValueCorrectlyPredicted = () => {
+    return {
+        type: actions.DICE_ROLL.DICE_VALUE_CORRECTLY_PREDICTED
+    };
+};
+
+export const gameLoadedFromLocalStorage = () => {
+    return {
+        type: actions.DICE_ROLL.GAME_LOADED_FROM_LOCAL_STORAGE
+    };
+};
+
+export const roundsHistoryUpdated = ({ roundsHistory = [] }) => {
+    return {
+        type: actions.DICE_ROLL.ROUNDS_HISTORY_UPDATED,
+        payload: {
+            roundsHistory
+        }
+    };
+};

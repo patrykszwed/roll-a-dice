@@ -1,12 +1,8 @@
 import styled from 'styled-components';
 
-export const ButtonDiv = styled.div`
-    display: flex;
-    justify-content: flex-end;
-`;
-
 export const StyledButton = styled.button`
-    width: 20%;
+    width: 15vw;
+    margin-top: 5vh;
     color: #fff !important;
     text-transform: uppercase;
     text-decoration: none;
@@ -16,9 +12,9 @@ export const StyledButton = styled.button`
     right: 0;
     border: none;
     transition: all 0.4s ease 0s;
+    margin-right: 1vw;
+    margin-left: 1vw;
     &:disabled {
         background: darkgray;
     }
-    margin-top: 2vh;
-    margin-bottom: 2vh;
 `;
