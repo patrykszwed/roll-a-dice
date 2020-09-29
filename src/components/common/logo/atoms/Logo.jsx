@@ -7,7 +7,7 @@ import { LogoContainer } from '../styles/styledComponents';
 export const Logo = () => {
     return (
         <LogoContainer>
-            <img width={200} height={150} src={require('../../../../images/logo.png')} />
+            <img width={200} height={150} src={require('../../../../images/logo.png')} alt='Logo' />
         </LogoContainer>
     );
 };

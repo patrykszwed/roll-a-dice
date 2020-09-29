@@ -26,8 +26,6 @@ export const RollDiceImage = () => {
         }
     };
 
-    console.log('diceValue = ', diceValue);
-
     return (
         <RollDiceImageContainer>
             {isLoading ? <LoadingIndicator /> : renderDiceImageForDiceValue(diceValue)}

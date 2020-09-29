@@ -21,9 +21,15 @@ export const diceValueCorrectlyPredicted = () => {
     };
 };
 
-export const gameLoadedFromLocalStorage = () => {
+export const gameLoadedFromLocalStorage = ({ dice, remainingTries, score, roundsHistory }) => {
     return {
-        type: actions.DICE_ROLL.GAME_LOADED_FROM_LOCAL_STORAGE
+        type: actions.DICE_ROLL.GAME_LOADED_FROM_LOCAL_STORAGE,
+        payload: {
+            dice,
+            remainingTries,
+            score,
+            roundsHistory
+        }
     };
 };
 
@@ -33,5 +39,11 @@ export const roundsHistoryUpdated = ({ roundsHistory = [] }) => {
         payload: {
             roundsHistory
         }
+    };
+};
+
+export const gameIsOver = () => {
+    return {
+        type: actions.DICE_ROLL.GAME_IS_OVER
     };
 };

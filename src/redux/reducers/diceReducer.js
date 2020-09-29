@@ -16,7 +16,6 @@ export const diceReducer = (
 ) => {
     switch (action.type) {
         case actions.DICE_ROLL.DICE_ROLLED:
-            console.log('action.payload.dice = ', action.payload.dice);
             return {
                 ...state,
                 dice: action.payload.dice,
@@ -37,12 +36,24 @@ export const diceReducer = (
         case actions.DICE_ROLL.GAME_LOADED_FROM_LOCAL_STORAGE:
             return {
                 ...state,
-                isFirstRoll: true
+                dice: action.payload.dice,
+                remainingTries: action.payload.remainingTries,
+                score: action.payload.score,
+                isLoading: false,
+                isFirstRoll: false,
+                roundsHistory: action.payload.roundsHistory,
+                isGameOver: false
             };
         case actions.DICE_ROLL.GAME_IS_OVER:
             return {
                 ...state,
-                isGameOver: true
+                dice: {},
+                remainingTries: getDefaultRemainingTriesForReducer(),
+                score: getDefaultScoreForReducer(),
+                isLoading: true,
+                isFirstRoll: true,
+                roundsHistory: [],
+                isGameOver: false
             };
         case actions.DICE_ROLL.ROUNDS_HISTORY_UPDATED:
             return {

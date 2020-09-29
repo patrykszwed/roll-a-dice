@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { rollDice } from '../atoms/utils/rollDiceUtils';
+import { askUserAboutLoadingSavedGame, rollDice } from '../atoms/utils/rollDiceUtils';
 
 export const useDiceValueFromStore = () => {
     const { value } = useSelector((state) => state.dice.dice);
@@ -51,4 +51,10 @@ export const useInitialRollDiceIfIsFirstRoll = () => {
 const useFirstRollFromStore = () => {
     const { isFirstRoll } = useSelector((state) => state.dice);
     return isFirstRoll;
+};
+
+export const useAskAboutLoadingPreviouslySavedGame = () => {
+    useEffect(() => {
+        askUserAboutLoadingSavedGame();
+    }, []);
 };

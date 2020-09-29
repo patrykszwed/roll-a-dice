@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const getDataFromUrl = async (url) => {
-    console.log('getDataFromUrl url = ', url);
     return await axios({
         method: 'get',
         url

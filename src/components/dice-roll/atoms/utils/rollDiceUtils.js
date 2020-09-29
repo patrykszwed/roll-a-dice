@@ -2,13 +2,18 @@ import { getDataFromUrl } from '../../../../api/utils/apiUtils';
 import { API } from '../../../../api/constants/constants';
 import {
     correctlyPredictedDiceValue,
+    getDiceFromStore,
     getDiceValueFromStore,
     getFirstRollFromStore,
+    getRemainingTriesFromStore,
+    getRoundsHistoryFromStore,
+    getScoreFromStore,
+    loadGameFromLocalStorage,
     setDiceInStore,
     setDiceStartedRolling,
     updateRoundsHistory
 } from '../../utils/diceRollReduxUtils';
-import { PREDICTION } from '../../constants/constants';
+import { LOCAL_STORAGE_ITEMS, PREDICTION } from '../../constants/constants';
 
 export const rollDice = (predictedValue = null) => {
     const isFirstRoll = getFirstRollFromStore();
@@ -24,6 +29,7 @@ export const rollDice = (predictedValue = null) => {
             updateRoundsHistory(isCorrectPrediction);
         }
         setDiceInStore(dice);
+        saveGameObjectIntoLocalStorage();
     });
 };
 
@@ -50,4 +56,51 @@ export const rollDiceForLowerValuePredicted = () => {
 
 export const rollDiceForHigherValuePredicted = () => {
     rollDice(PREDICTION.HIGHER_VALUE);
+};
+
+export const informUserAboutGameOver = () => {
+    const score = getScoreFromStore();
+    alert(`Game over! Score: ${score}`);
+};
+
+export const askUserAboutLoadingSavedGame = () => {
+    if (window.confirm('Do you want to load previously saved game?')) {
+        loadGameFromLocalStorage();
+    }
+};
+
+export const getSavedGameObjectFromLocalStorage = () => {
+    return {
+        dice: getDiceFromLocalStorage(),
+        remainingTries: getRemainingTriesFromLocalStorage() + 1,
+        score: getScoreFromLocalStorage(),
+        roundsHistory: getRoundsHistoryFromLocalStorage()
+    };
+};
+
+const getDiceFromLocalStorage = () => {
+    const diceString = localStorage.getItem(LOCAL_STORAGE_ITEMS.DICE);
+    return JSON.parse(diceString);
+};
+
+const getRemainingTriesFromLocalStorage = () => {
+    const remainingTriesString = localStorage.getItem(LOCAL_STORAGE_ITEMS.REMAINING_TRIES);
+    return Number(remainingTriesString);
+};
+
+const getScoreFromLocalStorage = () => {
+    const scoreString = localStorage.getItem(LOCAL_STORAGE_ITEMS.SCORE);
+    return Number(scoreString);
+};
+
+const getRoundsHistoryFromLocalStorage = () => {
+    const roundsHistoryString = localStorage.getItem(LOCAL_STORAGE_ITEMS.ROUNDS_HISTORY);
+    return JSON.parse(roundsHistoryString);
+};
+
+export const saveGameObjectIntoLocalStorage = () => {
+    localStorage.setItem(LOCAL_STORAGE_ITEMS.DICE, JSON.stringify(getDiceFromStore()));
+    localStorage.setItem(LOCAL_STORAGE_ITEMS.REMAINING_TRIES, getRemainingTriesFromStore());
+    localStorage.setItem(LOCAL_STORAGE_ITEMS.SCORE, getScoreFromStore());
+    localStorage.setItem(LOCAL_STORAGE_ITEMS.ROUNDS_HISTORY, JSON.stringify(getRoundsHistoryFromStore()));
 };
